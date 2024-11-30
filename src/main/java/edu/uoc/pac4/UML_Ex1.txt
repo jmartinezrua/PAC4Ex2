@@ -1,0 +1,82 @@
+
+### Clases y Estructuras Principales
+
+1. **DSLab**
+   - **Atributos:**
+     - `MIN_CPU_REQUIRED: long = 1073741824`
+     - `name: String`
+     - `description: String`
+     - `versionMajor: int`
+     - `versionMinor: int`
+     - `versionPatch: int`
+     - `cpu: long`
+     - `university: University`
+   - **Métodos:**
+     - `getName(): String`
+     - `setName(name: String)`
+     - `getDescription(): String`
+     - `setDescription(description: String)`
+     - `getVersionMajor(): int`
+     - `setVersionMajor(versionMajor: int)`
+     - `getVersionMinor(): int`
+     - `setVersionMinor(versionMinor: int)`
+     - `getVersionPatch(): int`
+     - `setVersionPatch(versionPatch: int)`
+     - `getVersion(): String`
+     - `getCpu(): long`
+     - `setCpu(cpu: long)`
+     - `getUniversity(): University`
+     - `setUniversity(university: University)`
+     - `getStatus(): DSLabStatus`
+     - `setStatus(status: DSLabStatus)`
+     - `toString(): String`
+
+2. **University**
+   - **Atributos:**
+     - `name: String`
+     - `abbreviation: String`
+     - `foundationDate: LocalDate`
+     - `address: String`
+     - `website: String`
+   - **Métodos:**
+     - `getName(): String`
+     - `setName(name: String)`
+     - `getAbbreviation(): String`
+     - `setAbbreviation(abbreviation: String)`
+     - `getFoundationDate(): LocalDate`
+     - `setFoundationDate(foundationDate: LocalDate)`
+     - `getAddress(): String`
+     - `setAddress(address: String)`
+     - `getWebsite(): String`
+     - `setWebsite(website: String)`
+     - `toString(): String`
+
+3. **Enumeración DSLabStatus**
+   - **Valores:**
+     - `ACTIVE`
+     - `INACTIVE`
+     - `MAINTENANCE`
+   - **Métodos:**
+     - `DSLabStatus(status: String)`
+     - `toString(): String`
+
+4. **Excepciones**
+   - **DSLabException**
+     - `INVALID_NAME: String`
+     - `INVALID_DESCRIPTION: String`
+     - `INVALID_VERSION_MAJOR: String`
+     - `INVALID_VERSION_MINOR: String`
+     - `INVALID_VERSION_PATCH: String`
+     - `NO_ENOUGH_CPU: String`
+     - `UNIVERSITY_NULL: String`
+   - **UniversityException**
+     - `INVALID_NAME: String`
+     - `INVALID_ABBREVIATION: String`
+     - `INVALID_FOUNDATION_DATE: String`
+     - `INVALID_ADDRESS: String`
+     - `INVALID_WEBSITE: String`
+
+### Relaciones
+- La clase **DSLab** tiene una relación de composición con **University** (agregación fuerte), ya que cada laboratorio debe estar asociado con una universidad específica.
+- **DSLab** utiliza la enumeración **DSLabStatus** para representar su estado.
+  

@@ -1,0 +1,90 @@
+**Exercise 2 (5 points)**
+
+Before starting, you must:
+1. Open the PAC4Ex2 project in IntelliJ. In the `edu.uoc.pac4` package of the `/src/test/java` directory, you will find the file with the unit tests we provide. Copy the `edu.uoc.pac4` package from the `/src/main/java` directory of Exercise 1 of this PEC4 once you have completed it.
+2. In this exercise, we expand the previous program by adding new classes, interfaces, and methods. The new UML class diagram can be found in the zip file of the statement named `PAC4Ex2.png`. It is important to consult it often as it contains information, such as the access modifiers of the elements, which may not be mentioned in this statement.
+3. To give you a clear idea of the structure the project should have, we provide a screenshot showing all the classes, interfaces, and enumerations that need to be coded within their respective packages. You must maintain this structure in your project to execute the test collection correctly.
+
+**Recommendation:** In this exercise, we will learn to use the LinkedList data structure, which allows storing elements in a linked list. You can learn more about it in the official Java documentation: LinkedList Documentation.
+
+Next, we will discuss each of the elements that appear in the class diagram and the previous screenshot:
+
+### Interface `Evaluable`
+This interface declares the method signature that any class whose objects can be evaluated must have. It should be within the `edu.uoc.pac4.activity` package.
+
+### Class `ActivityException`
+This class must define all the attributes and constructors that appear in the UML diagram and inherit from the `Exception` class as in the previous exercise.
+
+### Class `Activity`
+This class is abstract, meaning it cannot be instantiated, and its child classes must be instantiated. Therefore, it must be declared as abstract. Additionally, it represents an activity that can be executed within the DSLab application.
+
+For its implementation, follow the definition provided in the UML diagram. Additionally, consider the following:
+
+- The `Activity` class must implement the `Cloneable` interface and the `clone` method. For now, you can leave its signature and code it later.
+- This class has an attribute representing a list of executions to store all the executions carried out for this activity. Use the LinkedList data structure for this attribute.
+- `setName`: If the name received as a parameter is null, empty, or consists only of whitespace, the method should throw an `ActivityException` with the message "[ERROR] Name cannot be null, empty or blank". Otherwise, it should assign the activity name, removing any leading and trailing whitespace.
+- `setDescription`: If the description received as a parameter is null, the method should assign an empty string. Otherwise, it should assign the description received, removing any leading and trailing whitespace.
+- `addExecution`: This method should insert the execution received as a parameter at the end of the linked list.
+- `getExecutions`: This method should return a linked list with all the executions of this instance.
+- `clone`: This method should create a copy of the activity and return it. It should clone all its attributes except the list of executions, which should be empty in the new copy. The implementation of this method must use the `clone` method of the `Object` class.
+- `toString`: This method returns a string with the activity information in the following format: `name: description Total executions: n`, where `n` is the number of executions carried out for this activity.
+
+### Class `ActivityProgramming`
+This class is also abstract and inherits from the `Activity` class. Therefore, it will be a child class of `Activity`, allowing access to all public and protected attributes and methods of the parent class.
+
+For its implementation, consider the following:
+
+- `setWeight`: If the weight attribute representing the activity's weight in the final grade is less than 0 or greater than 100, it should be corrected to be within the range [0, 100]. Once adjusted, if necessary, the method assigns the weight.
+- `toString`: This method returns a string with the programming activity information, including the information inherited from the parent class. It should follow the format: `name: description Total executions: n (weight%)`.
+
+### Enum `ActivityQuizType`
+This enumeration should be implemented following the UML specifications. Each literal should have the following description:
+
+- `MULTIPLE_CHOICE` → Collection of questions with multiple choices
+- `TRUE_FALSE` → Collection of questions with true or false answers
+- `SHORT_ANSWER` → Collection of questions with short answers
+
+Additionally, consider the following:
+
+- `toString`: This method should return the description of the literal representing the instance.
+
+### Class `ActivityQuiz`
+This class inherits from the `Activity` class, so it will have access to the public and protected attributes and methods of the parent class. However, this class is not abstract, so it can be instantiated.
+
+For its implementation, consider the following:
+
+- `toString`: This method returns the activity information followed by a description of the quiz type it represents. It should follow the format: `name: description Total executions: n typeDescription`.
+
+### Class `ActivityProgrammingCpp`
+For its implementation, consider the following:
+
+- `setCompiler`: If the compiler received as a parameter is null, empty, or consists only of whitespace, it should throw an `ActivityException` with the message "[ERROR] Compiler cannot be null, empty or blank". Otherwise, it should assign the compiler, removing any leading and trailing whitespace.
+- `setStandard`: If the standard received as a parameter is null, empty, or consists only of whitespace, it should throw an `ActivityException` with the message "[ERROR] Standard cannot be null, empty or blank". Otherwise, it should assign the standard, removing any leading and trailing whitespace.
+- `toString`: This method returns the information of a C++ programmed activity. It should follow the format: `[C++] name: description Total executions: n (weight%) (compiler, standard)`.
+
+### Class `ActivityProgrammingJava`
+For its implementation, consider the following:
+
+- `setJdkVersion`: If the JDK version received as a parameter is null or does not contain a valid version, it should throw an `ActivityException` with the message "[ERROR] JDK version must be in the format x.y.z where y and z are optional". Otherwise, it assigns the JDK version. A JDK version is considered valid if it consists only of numbers and dots and follows the format `x.y.z`, where `y` and `z` are optional.
+- `setGradleVersion`: If the Gradle version received as a parameter is null or does not contain a valid version, it should throw an `ActivityException` with the message "[ERROR] Gradle version must be in the format x.y.z where z is optional". Otherwise, it assigns the Gradle version. A Gradle version is considered valid if it consists only of numbers and dots and follows the format `x.y.z`, where `z` is optional.
+- `toString`: This method returns the information of a Java programmed activity. It should follow the format: `[Java] name: description Total executions: n (weight%) (jdk-jdkVersion, gradle vgradle)`.
+
+### Class `ActivityProgrammingPython`
+For its implementation, consider the following:
+
+- `setPythonVersion`: If the Python version received as a parameter is null or does not contain a valid version, it should throw an `ActivityException` with the message "[ERROR] Python version must be in the format x.y.z where z is optional". Otherwise, it assigns the Python version. A Python version is considered valid if it consists only of numbers and dots and follows the format `x.y.z`, where `z` is optional.
+- `toString`: This method returns the information of a Python programmed activity. It should follow the format: `[Python] name: description Total executions: n (weight%) (pythonVersion, with virtualenv)`, where the string ", with virtualenv" is added only if it needs to be executed in a virtual environment.
+
+### Class `UserException`
+This class must define all the attributes and constructors that appear in the UML diagram and inherit from the `Exception` class as in the previous exercise. It should be within the `edu.uoc.pac4.user` package.
+
+### Class `User`
+This class is again abstract, so it cannot be instantiated. For its implementation, consider the following:
+
+- `setEmail`: If the email received as a parameter is null or not a valid email, the method should throw a `UserException` with the message "[ERROR] The email must start with any character end with @uoc.edu". Otherwise, it assigns the email received. An email is considered valid if it starts with any character and always ends with the string "@uoc.edu".
+- `setName`: If the name received as a parameter is null, empty, or consists only of whitespace, it should throw a `UserException` with the message "[ERROR] Name cannot be null, empty or blank". Otherwise, it assigns the name, removing any leading and trailing whitespace.
+- `setSurname`: If the surname received as a parameter is null, it should assign an empty string. Otherwise, it assigns the surname received, removing any leading and trailing whitespace.
+- `toString`: This method returns the user information. It should follow the format: `name surname (email)`.
+
+### Class `Student`
+This class inherits from the `User` class. It also has an attribute to store the executions the student has made in the application. This attribute should be declared using a linked list. To implement
