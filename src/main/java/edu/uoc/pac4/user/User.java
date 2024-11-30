@@ -16,7 +16,7 @@ public abstract class User {
     }
 
     public void setEmail(String email) throws UserException {
-        if (email == null || !email.endsWith("@uoc.edu")) {
+        if (email == null || !email.matches("^[^@]+@uoc\\.edu$")) {
             throw new UserException(UserException.INVALID_EMAIL);
         }
         this.email = email;

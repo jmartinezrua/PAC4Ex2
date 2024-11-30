@@ -4,14 +4,15 @@ import edu.uoc.pac4.execution.Execution;
 import java.util.LinkedList;
 
 public class Student extends User {
-    private LinkedList<Execution> executions = new LinkedList<>();
+    private LinkedList<Execution> executions;
 
     public Student(String email, String name, String surname) throws UserException {
         super(email, name, surname);
+        this.executions = new LinkedList<>();
     }
 
     public void addExecution(Execution execution) {
-        executions.add(execution);
+        this.executions.add(execution);
     }
 
     public LinkedList<Execution> getExecutions() {
@@ -24,6 +25,6 @@ public class Student extends User {
 
     @Override
     public String toString() {
-        return "[STUDENT] " + super.toString() + " Total executions: " + executions.size();
+        return String.format("[STUDENT] %s %s (%s) Total executions: %d", getName(), getSurname(), getEmail(), executions.size());
     }
 }

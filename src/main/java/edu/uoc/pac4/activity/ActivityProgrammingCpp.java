@@ -34,6 +34,11 @@ public class ActivityProgrammingCpp extends ActivityProgramming {
 
     @Override
     public String toString() {
-        return "[C++] " + super.toString() + " (" + compiler + ", " + standard + ")";
+        return "[C++] " + super.toString() + " (" + getCompiler() + ", " + getStandard() + ")";
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

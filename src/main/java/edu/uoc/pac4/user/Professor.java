@@ -22,6 +22,7 @@ public class Professor extends User {
 
     @Override
     public String toString() {
-        return String.format("%s %s (%s)", getName(), getSurname(), getEmail());
+        return String.format("[PROFESSOR] %s %s (%s) Total activities: %d",
+                getName(), getSurname(), getEmail(), getActivities().size());
     }
 }

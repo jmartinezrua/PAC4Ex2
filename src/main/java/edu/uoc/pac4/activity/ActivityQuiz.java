@@ -1,4 +1,3 @@
-// ActivityQuiz.java
 package edu.uoc.pac4.activity;
 
 public class ActivityQuiz extends Activity {
@@ -6,7 +5,7 @@ public class ActivityQuiz extends Activity {
 
     public ActivityQuiz(String name, String description, ActivityQuizType type) throws ActivityException {
         super(name, description);
-        this.type = type;
+        setType(type);
     }
 
     public ActivityQuizType getType() {
@@ -19,6 +18,6 @@ public class ActivityQuiz extends Activity {
 
     @Override
     public String toString() {
-        return super.toString() + " " + type.toString();
+        return String.format("%s%n%s", super.toString(), type.toString());
     }
 }

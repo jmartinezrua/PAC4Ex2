@@ -1,7 +1,9 @@
 package edu.uoc.pac4.execution;
 
 import edu.uoc.pac4.activity.Activity;
+import edu.uoc.pac4.activity.ActivityQuiz;
 import edu.uoc.pac4.user.Student;
+import java.util.Locale;
 
 public class Execution {
     private double score;
@@ -9,11 +11,11 @@ public class Execution {
     private Activity activity;
 
     public Execution(double score, Student student, Activity activity) {
+        setScore(score);
         this.student = student;
         this.activity = activity;
-        setScore(score);
-        activity.addExecution(this);
-        student.addExecution(this);
+        this.student.addExecution(this);
+        this.activity.addExecution(this);
     }
 
     public double getScore() {
@@ -21,10 +23,10 @@ public class Execution {
     }
 
     public void setScore(double score) {
-        if (score < 0) {
-            this.score = 0;
-        } else if (score > 10) {
-            this.score = 10;
+        if (score < 0.0) {
+            this.score = 0.0;
+        } else if (score > 10.0) {
+            this.score = 10.0;
         } else {
             this.score = score;
         }
@@ -48,6 +50,9 @@ public class Execution {
 
     @Override
     public String toString() {
-        return student.toString() + " " + activity.toString() + " Score: " + score;
+        return String.format(Locale.US, "[STUDENT] %s %s (%s) Total executions: %d%n%s%nTotal executions: %d%n%s%nScore: %.1f",
+                student.getName(), student.getSurname(), student.getEmail(), student.getExecutions().size(),
+                activity.getName() + ": " + activity.getDescription(), activity.getExecutions().size(),
+                activity instanceof ActivityQuiz ? ((ActivityQuiz) activity).getType().toString() : "", score);
     }
 }

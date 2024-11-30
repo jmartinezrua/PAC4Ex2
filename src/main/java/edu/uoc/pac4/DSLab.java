@@ -132,7 +132,10 @@ public class DSLab {
     }
 
     public void addActivity(Activity activity) {
-        activities.add(activity);
+        this.activities.add(activity);
+        if (activity instanceof Evaluable) {
+            this.evaluableActivities.add((Evaluable) activity);
+        }
     }
 
     public LinkedList<Activity> getActivities() {

@@ -1,16 +1,17 @@
 package edu.uoc.pac4.activity;
 
-import edu.uoc.pac4.execution.Execution; // Add this import statement
+import edu.uoc.pac4.execution.Execution;
 import java.util.LinkedList;
 
 public abstract class Activity implements Cloneable {
     private String name;
     private String description;
-    private LinkedList<Execution> executions = new LinkedList<>();
+    private LinkedList<Execution> executions;
 
     public Activity(String name, String description) throws ActivityException {
         setName(name);
         setDescription(description);
+        this.executions = new LinkedList<>();
     }
 
     public String getName() {
@@ -29,11 +30,15 @@ public abstract class Activity implements Cloneable {
     }
 
     public void setDescription(String description) {
-        this.description = (description == null) ? "" : description.trim();
+        if (description == null) {
+            this.description = "";
+        } else {
+            this.description = description.trim();
+        }
     }
 
     public void addExecution(Execution execution) {
-        executions.add(execution);
+        this.executions.add(execution);
     }
 
     public LinkedList<Execution> getExecutions() {
@@ -49,6 +54,6 @@ public abstract class Activity implements Cloneable {
 
     @Override
     public String toString() {
-        return name + ": " + description + " Total executions: " + executions.size();
+        return String.format("%s: %s%nTotal executions: %d", name, description, executions.size());
     }
 }
