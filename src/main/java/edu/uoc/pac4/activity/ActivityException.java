@@ -1,5 +1,8 @@
 package edu.uoc.pac4.activity;
 
+/**
+ * Custom exception class for Activity-related errors.
+ */
 public class ActivityException extends Exception {
     public static final String INVALID_NAME = "[ERROR] Name cannot be null, empty or blank";
     public static final String INVALID_CPP_COMPILER = "[ERROR] Compiler cannot be null, empty or blank";
@@ -8,6 +11,11 @@ public class ActivityException extends Exception {
     public static final String INVALID_GRADLE_VERSION = "[ERROR] Gradle version must be in the format x.y.z where z is optional";
     public static final String INVALID_PYTHON_VERSION = "[ERROR] Python version must be in the format x.y.z where z is optional";
 
+    /**
+     * Constructs a new ActivityException with the specified detail message.
+     *
+     * @param message the detail message
+     */
     public ActivityException(String message) {
         super(message);
     }
